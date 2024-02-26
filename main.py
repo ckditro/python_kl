@@ -3,7 +3,7 @@
 import aiohttp
 import asyncio
 from markupsafe import escape
-from pynput import mouse, keyboard
+from pynput import keyboard
 
 recording = []
 count = 0
