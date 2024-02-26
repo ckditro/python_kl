@@ -14,6 +14,7 @@ async def post_request():
     global recording
     data=''.join(recording)
     data="{{\"event\":\"word={0}\"}}".format(data)
+    # Testing
     url = "https://192.168.50.234:8088/services/collector/event"
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
         response = await session.post(
