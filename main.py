@@ -14,11 +14,12 @@ async def post_request():
     data = ''.join(recording)
     data = "{{\"event\":\"word={0}\"}}".format(data)
     url = "https://192.168.50.234:8088/services/collector/event"
+    headers = {'Authorization': 'Splunk 24FD4388-F0DC-4036-A058-146DC4FA637B'}
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
         response = await session.post(
             url=url,
             data=data,
-            headers={'Authorization': 'Splunk 24FD4388-F0DC-4036-A058-146DC4FA637B'})
+            headers=headers)
 
 
 def get_key_code(key):
