@@ -19,7 +19,7 @@ async def post_request():
         response = await session.post(
             url=url,
             data=data,
-            headers={'Authorization': 'Splunk 24FD4388-F0DC-4036-A058-146DC4FA637B'})
+            headers={'Authorization': 'Splunk 24FD4388-F0DC-4036-A058-XXXXXX'})
 
 def get_key_code(key):
     if isinstance(key, keyboard.KeyCode):
