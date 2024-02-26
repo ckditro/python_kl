@@ -1,0 +1,1 @@
+Sample script for sending KB output to Splunk HEC.
